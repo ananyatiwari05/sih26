@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Mic, Search, AudioLines } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Mic, Search, Square } from 'lucide-react';
 
 const VoiceSearchBar = () => {
   const [isListening, setIsListening] = useState(false);
@@ -10,35 +9,28 @@ const VoiceSearchBar = () => {
   };
 
   return (
-    <div className="relative flex items-center w-full max-w-md mx-4">
-      <div className="flex items-center w-full bg-slate-800/80 border border-slate-600/50 rounded-full px-4 py-2 shadow-inner focus-within:border-emerald-500/50 transition-colors">
-        <Search className="w-4 h-4 text-slate-400 mr-2" />
+    <div className="relative flex items-center w-full max-w-md mx-4 font-mono">
+      <div className="flex items-center w-full bg-black border border-zinc-700 px-3 py-1.5 focus-within:border-white transition-colors">
+        <Search className="w-3.5 h-3.5 text-zinc-500 mr-2 rounded-none" />
         <input 
           type="text" 
-          placeholder="E.g., 'Ramgarh gaon mein ghost structures dikhao'" 
-          className="bg-transparent border-none outline-none text-slate-200 text-sm w-full placeholder:text-slate-500"
+          placeholder=">_ QUERY: 'Show ghost structures...'" 
+          className="bg-transparent border-none outline-none text-white text-xs w-full placeholder:text-zinc-600 uppercase"
         />
         <button 
           onClick={toggleListen}
-          className={`ml-2 p-1.5 rounded-full transition-colors ${isListening ? 'bg-emerald-500/20 text-emerald-400' : 'hover:bg-slate-700 text-slate-400'}`}
+          className={`ml-2 p-1 border transition-colors ${isListening ? 'bg-white text-black border-white' : 'hover:bg-zinc-800 text-zinc-400 border-transparent'}`}
         >
-          {isListening ? <AudioLines className="w-4 h-4 animate-pulse" /> : <Mic className="w-4 h-4" />}
+          {isListening ? <Square className="w-3.5 h-3.5 fill-black" /> : <Mic className="w-3.5 h-3.5" />}
         </button>
       </div>
       {isListening && (
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="absolute top-12 left-0 w-full bg-slate-800/95 border border-emerald-500/30 rounded-lg p-3 text-xs text-emerald-400 shadow-xl backdrop-blur-md"
-        >
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-            </span>
-            Listening (Bhashini AI active)...
+        <div className="absolute top-10 left-0 w-full bg-black border border-white p-2 text-[10px] text-white shadow-[4px_4px_0px_white] z-50">
+          <div className="flex items-center gap-2 uppercase tracking-widest">
+            <span className="w-2 h-2 bg-white animate-pulse"></span>
+            REC // BHASHINI AI ACTIVE...
           </div>
-        </motion.div>
+        </div>
       )}
     </div>
   );

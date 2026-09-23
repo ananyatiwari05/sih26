@@ -8,7 +8,6 @@ const MapController = ({ selectedFeature }) => {
   useEffect(() => {
     if (selectedFeature) {
       const coords = selectedFeature.geometry.coordinates[0];
-      // Basic center calculation
       const lats = coords.map(c => c[1]);
       const lngs = coords.map(c => c[0]);
       const centerLat = (Math.min(...lats) + Math.max(...lats)) / 2;
@@ -21,47 +20,44 @@ const MapController = ({ selectedFeature }) => {
   return null;
 };
 
-const MapCanvas = ({ onFeatureSelect, selectedFeature, activeLayer }) => {
+const MapCanvas = ({ onFeatureSelect, selectedFeature }) => {
   const center = [28.5355, 77.3910];
 
   const getStyleForFeature = (feature) => {
     const isSelected = selectedFeature?.properties.id === feature.properties.id;
-    const baseStyle = { weight: 2, fillOpacity: 0.35 };
+    
+    // Base style modifier if selected (make it pop with thicker border)
+    const selectionWeightOffset = isSelected ? 2 : 0;
 
     switch (feature.properties.type) {
       case 'GHOST_STRUCTURE':
-        return { ...baseStyle, color: '#DC2626', fillColor: '#EF4444', weight: isSelected ? 4 : 2 };
+        return { fillColor: "#ffffff", fillOpacity: 0.2, color: "#ffffff", weight: 2 + selectionWeightOffset, dashArray: "4 4" };
       case 'PHANTOM_RECORD':
-        return { ...baseStyle, color: '#D97706', fillColor: '#F59E0B', weight: isSelected ? 4 : 2 };
+        return { fillColor: "#000000", fillOpacity: 0.8, color: "#ffffff", weight: 1 + selectionWeightOffset, dashArray: "1 4" };
       case 'BOUNDARY_DRIFT':
-        return { ...baseStyle, color: '#CA8A04', fillColor: '#EAB308', weight: isSelected ? 4 : 2 };
+        return { fillColor: "transparent", color: "#ffffff", weight: 3 + selectionWeightOffset, dashArray: "10 5" };
       case 'VERIFIED':
-        return { color: '#10B981', fillColor: '#10B981', fillOpacity: 0.05, weight: isSelected ? 3 : 1 };
+        return { fillColor: "#ffffff", fillOpacity: 0.05, color: "#52525B", weight: 1 + selectionWeightOffset };
       default:
-        return { color: '#3388ff', fillColor: '#3388ff' };
+        return { color: '#ffffff', fillColor: '#ffffff' };
     }
   };
 
-  const tileUrls = {
-    cartodb: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    osm: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-  };
-
   return (
-    <div className="absolute inset-0 z-0 bg-[#020617]">
+    <div className="absolute inset-0 z-0 bg-black">
       <MapContainer 
         center={center} 
         zoom={16} 
         zoomControl={false}
-        className="w-full h-full"
+        style={{ height: '100vh', width: '100vw' }}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url={tileUrls[activeLayer || 'cartodb']}
+        <TileLayer 
+          attribution="&copy; OpenStreetMap" 
+          className="map-tiles-bw" 
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         
         {geoJsonData.features.map((feature, idx) => {
-          // Leaflet expects [lat, lng], GeoJSON is [lng, lat]
           const positions = feature.geometry.coordinates[0].map(coord => [coord[1], coord[0]]);
           return (
             <Polygon

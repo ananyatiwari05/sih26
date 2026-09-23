@@ -16,7 +16,7 @@ function App() {
   const [activeLayer, setActiveLayer] = useState('cartodb');
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-slate-950 font-sans text-slate-100">
+    <div className="relative w-screen h-screen overflow-hidden bg-black font-sans text-white">
       <Header />
       
       <LayerControls activeLayer={activeLayer} setActiveLayer={setActiveLayer} />
@@ -49,8 +49,8 @@ function App() {
       <div className="absolute bottom-6 right-6 z-40 flex flex-col gap-3 pointer-events-auto">
         <button 
           onClick={() => setIsLedgerOpen(!isLedgerOpen)}
-          className={`p-3 rounded-full shadow-2xl transition-all ${
-            isLedgerOpen ? 'bg-blue-600 text-white' : 'bg-slate-800/90 text-blue-400 hover:bg-slate-700 hover:text-blue-300 border border-slate-600'
+          className={`p-3 rounded-none border transition-colors ${
+            isLedgerOpen ? 'bg-white text-black border-white' : 'bg-black text-white hover:bg-zinc-900 border-white shadow-[4px_4px_0px_white]'
           }`}
           title="Immutable Trust Ledger"
         >
@@ -60,7 +60,7 @@ function App() {
         {selectedFeature?.properties?.type === 'VERIFIED' && (
           <button 
             onClick={() => setIsExportOpen(true)}
-            className="p-3 rounded-full shadow-2xl bg-emerald-600 text-white hover:bg-emerald-500 transition-all border border-emerald-400/50"
+            className="p-3 rounded-none bg-white text-black border border-white shadow-[4px_4px_0px_white] hover:bg-zinc-200 transition-colors"
             title="Export Sampatti Patrak"
           >
             <FileDown className="w-5 h-5" />

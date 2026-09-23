@@ -6,7 +6,6 @@ const ExportModal = ({ isOpen, onClose, selectedFeature }) => {
   if (!isOpen) return null;
 
   const handleDownload = (format) => {
-    // In a real app, this would trigger an actual download
     alert(`Exporting Sampatti Patrak as ${format.toUpperCase()}...`);
     onClose();
   };
@@ -17,77 +16,78 @@ const ExportModal = ({ isOpen, onClose, selectedFeature }) => {
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-auto">
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose}></div>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="relative bg-slate-100 w-[500px] max-w-[90vw] rounded-sm shadow-2xl overflow-hidden flex flex-col font-serif"
+          transition={{ type: 'tween', duration: 0.15 }}
+          className="relative bg-black w-[550px] max-w-[90vw] border border-white shadow-[8px_8px_0px_white] flex flex-col font-mono rounded-none text-white"
         >
           {/* Header */}
-          <div className="bg-emerald-800 text-emerald-50 p-4 flex justify-between items-center relative overflow-hidden">
+          <div className="bg-white text-black p-4 flex justify-between items-center relative overflow-hidden border-b border-black">
             <div className="absolute top-0 right-0 opacity-10">
               <MapPin className="w-32 h-32 -mt-10 -mr-10" />
             </div>
             <div className="relative z-10">
-              <h2 className="text-xl font-bold uppercase tracking-wider">Sampatti Patrak</h2>
-              <p className="text-xs uppercase tracking-widest opacity-80">SVAMITVA Scheme - Property Card</p>
+              <h2 className="text-2xl font-bold uppercase tracking-tighter">SAMPATTI_PATRAK.PDF</h2>
+              <p className="text-[10px] uppercase tracking-widest font-bold">SVAMITVA Scheme - Property Card</p>
             </div>
-            <button onClick={onClose} className="p-1 hover:bg-emerald-700 rounded transition-colors relative z-10">
+            <button onClick={onClose} className="p-1 border border-black hover:bg-black hover:text-white transition-colors relative z-10 rounded-none">
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Content */}
-          <div className="p-8 text-slate-800 space-y-6">
-            <div className="text-center space-y-1 border-b-2 border-emerald-800/20 pb-4">
-              <div className="text-xs uppercase tracking-widest text-slate-500 font-sans">Official Record of Rights</div>
-              <div className="text-2xl font-bold tracking-tight">Parcel ID: {parcelId}</div>
+          <div className="p-8 space-y-6">
+            <div className="text-center space-y-1 border-b-2 border-dashed border-zinc-700 pb-4">
+              <div className="text-[10px] uppercase tracking-widest text-zinc-500">Official Record of Rights</div>
+              <div className="text-xl font-bold tracking-tight">PARCEL_ID: {parcelId}</div>
             </div>
 
-            <div className="grid grid-cols-2 gap-y-4 gap-x-8 text-sm">
+            <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-sm">
               <div className="space-y-1">
-                <div className="text-[10px] uppercase text-slate-500 font-sans">Owner Name</div>
-                <div className="font-bold border-b border-slate-300 pb-1">{selectedFeature?.properties?.owner || 'Govt of India'}</div>
+                <div className="text-[9px] uppercase text-zinc-500 tracking-widest">OWNER_NAME</div>
+                <div className="font-bold border-b border-zinc-700 pb-1">{selectedFeature?.properties?.owner || 'GOVT OF INDIA'}</div>
               </div>
               <div className="space-y-1">
-                <div className="text-[10px] uppercase text-slate-500 font-sans">Total Area</div>
-                <div className="font-bold border-b border-slate-300 pb-1">{selectedFeature?.properties?.area || '--'} sq.m</div>
+                <div className="text-[9px] uppercase text-zinc-500 tracking-widest">TOTAL_AREA</div>
+                <div className="font-bold border-b border-zinc-700 pb-1">{selectedFeature?.properties?.area || '--'} SQ.M</div>
               </div>
               <div className="space-y-1">
-                <div className="text-[10px] uppercase text-slate-500 font-sans">Survey Year</div>
-                <div className="font-bold border-b border-slate-300 pb-1">{selectedFeature?.properties?.surveyYear || '2026'}</div>
+                <div className="text-[9px] uppercase text-zinc-500 tracking-widest">SURVEY_YEAR</div>
+                <div className="font-bold border-b border-zinc-700 pb-1">{selectedFeature?.properties?.surveyYear || '2026'}</div>
               </div>
               <div className="space-y-1">
-                <div className="text-[10px] uppercase text-slate-500 font-sans">Status</div>
-                <div className={`font-bold border-b border-slate-300 pb-1 ${isVerified ? 'text-emerald-700' : 'text-red-700'}`}>
-                  {isVerified ? 'VERIFIED' : 'DISPUTED / PENDING'}
+                <div className="text-[9px] uppercase text-zinc-500 tracking-widest">LEGAL_STATUS</div>
+                <div className={`font-bold border-b border-zinc-700 pb-1 ${isVerified ? 'text-white' : 'text-zinc-500 line-through'}`}>
+                  {isVerified ? 'VERIFIED' : 'DISPUTED'}
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-100 p-4 border border-slate-300 text-xs text-slate-600 italic">
-              "This document is a digitally generated provisional property card based on drone surveys under the SVAMITVA scheme. Final legal validity is subject to ground truthing by local authorities."
+            <div className="bg-zinc-900 p-4 border border-zinc-700 text-[10px] text-zinc-400 uppercase tracking-widest leading-relaxed">
+              "THIS DOCUMENT IS A DIGITALLY GENERATED PROVISIONAL PROPERTY CARD BASED ON DRONE SURVEYS UNDER THE SVAMITVA SCHEME. FINAL LEGAL VALIDITY IS SUBJECT TO GROUND TRUTHING BY LOCAL AUTHORITIES."
             </div>
           </div>
 
           {/* Action Footer */}
-          <div className="bg-slate-200 p-4 flex gap-3 font-sans">
+          <div className="p-4 flex gap-3 border-t border-zinc-700 bg-zinc-950">
             <button 
               onClick={() => handleDownload('pdf')}
-              className="flex-1 bg-emerald-700 hover:bg-emerald-800 text-white py-2.5 px-4 flex items-center justify-center gap-2 font-semibold text-sm transition-colors rounded shadow"
+              className="flex-1 bg-white hover:bg-zinc-300 text-black py-3 px-4 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-widest transition-colors rounded-none border border-transparent"
             >
-              <Download className="w-4 h-4" /> Download PDF
+              <Download className="w-4 h-4" /> EXPORT PDF
             </button>
             <button 
               onClick={() => handleDownload('geojson')}
-              className="bg-slate-700 hover:bg-slate-800 text-white py-2.5 px-4 flex items-center justify-center gap-2 font-semibold text-sm transition-colors rounded shadow"
+              className="bg-black hover:bg-zinc-900 text-white border border-white py-3 px-4 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-widest transition-colors rounded-none"
             >
-              <FileJson className="w-4 h-4" /> Export GeoJSON
+              <FileJson className="w-4 h-4" /> GEOJSON
             </button>
             <button 
               onClick={() => window.print()}
-              className="bg-slate-300 hover:bg-slate-400 text-slate-800 py-2.5 px-4 flex items-center justify-center transition-colors rounded shadow"
+              className="bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border border-zinc-700 py-3 px-4 flex items-center justify-center transition-colors rounded-none"
               title="Print"
             >
               <Printer className="w-4 h-4" />

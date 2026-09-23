@@ -1,42 +1,35 @@
 import React, { useState } from 'react';
-import { History, Play, Pause } from 'lucide-react';
+import { Square, SquareCheck } from 'lucide-react';
 
 const TimelineSlider = () => {
   const years = [2021, 2023, 2025, 2026];
   const [currentYear, setCurrentYear] = useState(2026);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  // Note: Actual filtering of map data would be lifted up to App.jsx in a real app,
-  // but for the visual component we just need the UI state.
-
   const handleSliderChange = (e) => {
     setCurrentYear(parseInt(e.target.value));
   };
 
   return (
-    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 bg-slate-900/85 backdrop-blur-md border border-slate-700/60 rounded-xl shadow-2xl px-6 py-4 flex items-center gap-6 pointer-events-auto w-[600px] max-w-[90vw]">
+    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 bg-black border border-white p-4 flex flex-col gap-3 pointer-events-auto w-[600px] max-w-[90vw] shadow-[4px_4px_0px_white] rounded-none font-mono">
       
-      <div className="flex flex-col items-center gap-1">
-        <button 
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="p-2 bg-blue-900/40 text-blue-400 rounded-full hover:bg-blue-800/60 transition-colors border border-blue-500/30"
-        >
-          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-        </button>
-        <span className="text-[10px] text-slate-400 uppercase font-bold tracking-widest mt-1">Scrub</span>
+      <div className="flex justify-between items-end border-b border-zinc-800 pb-2">
+        <div className="flex items-center gap-3 text-white">
+          <button 
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="border border-white hover:bg-white hover:text-black transition-colors p-1"
+          >
+            {isPlaying ? <SquareCheck className="w-4 h-4 fill-current" /> : <Square className="w-4 h-4" />}
+          </button>
+          <span className="text-xs font-bold uppercase tracking-widest">TEMPORAL_SCRUB</span>
+        </div>
+        <div className="bg-white text-black font-bold text-xs px-2 py-0.5 uppercase">
+          EPOCH: {currentYear}
+        </div>
       </div>
 
-      <div className="flex-1">
-        <div className="flex justify-between mb-2">
-          <div className="flex items-center gap-2 text-slate-300">
-            <History className="w-4 h-4" />
-            <span className="text-xs font-mono font-bold uppercase tracking-wider">Epoch Timeline</span>
-          </div>
-          <div className="text-emerald-400 font-mono font-bold text-sm bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/30">
-            {currentYear} Survey
-          </div>
-        </div>
-        
+      <div className="relative pt-4 pb-2">
+        {/* Brutalist Custom Slider Styling */}
         <input 
           type="range" 
           min={2021} 
@@ -44,14 +37,17 @@ const TimelineSlider = () => {
           step={1}
           value={currentYear}
           onChange={handleSliderChange}
-          className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 outline-none"
+          className="w-full appearance-none bg-transparent focus:outline-none z-10 relative cursor-pointer brutal-slider"
         />
         
-        <div className="flex justify-between mt-2 px-1 text-[10px] font-mono text-slate-500">
-          <span>2021 (Base)</span>
-          <span>2023 (Phase I)</span>
-          <span>2025 (Phase II)</span>
-          <span className="text-slate-300 font-bold">2026 (Live)</span>
+        {/* The Track (1px white line) */}
+        <div className="absolute top-[21px] left-0 right-0 h-[1px] bg-white z-0"></div>
+
+        <div className="flex justify-between mt-4 px-1 text-[9px] uppercase tracking-widest text-zinc-500">
+          <span className={currentYear === 2021 ? 'text-white font-bold' : ''}>2021_BASE</span>
+          <span className={currentYear === 2023 ? 'text-white font-bold' : ''}>2023_PH1</span>
+          <span className={currentYear === 2025 ? 'text-white font-bold' : ''}>2025_PH2</span>
+          <span className={currentYear === 2026 ? 'text-white font-bold' : ''}>2026_LIVE</span>
         </div>
       </div>
     </div>
