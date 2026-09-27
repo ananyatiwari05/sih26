@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Square, SquareCheck } from 'lucide-react';
 
-const TimelineSlider = () => {
+const TimelineSlider = ({ currentEpoch, setCurrentEpoch }) => {
   const years = [2021, 2023, 2025, 2026];
-  const [currentYear, setCurrentYear] = useState(2026);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleSliderChange = (e) => {
-    setCurrentYear(parseInt(e.target.value));
+    setCurrentEpoch(e.target.value.toString());
   };
 
   return (
@@ -24,7 +23,7 @@ const TimelineSlider = () => {
           <span className="text-xs font-bold uppercase tracking-widest">TEMPORAL_SCRUB</span>
         </div>
         <div className="bg-white text-black font-bold text-xs px-2 py-0.5 uppercase">
-          EPOCH: {currentYear}
+          EPOCH: {currentEpoch}
         </div>
       </div>
 
@@ -35,7 +34,7 @@ const TimelineSlider = () => {
           min={2021} 
           max={2026} 
           step={1}
-          value={currentYear}
+          value={parseInt(currentEpoch)}
           onChange={handleSliderChange}
           className="w-full appearance-none bg-transparent focus:outline-none z-10 relative cursor-pointer brutal-slider"
         />
@@ -44,10 +43,10 @@ const TimelineSlider = () => {
         <div className="absolute top-[21px] left-0 right-0 h-[1px] bg-white z-0"></div>
 
         <div className="flex justify-between mt-4 px-1 text-[9px] uppercase tracking-widest text-zinc-500">
-          <span className={currentYear === 2021 ? 'text-white font-bold' : ''}>2021_BASE</span>
-          <span className={currentYear === 2023 ? 'text-white font-bold' : ''}>2023_PH1</span>
-          <span className={currentYear === 2025 ? 'text-white font-bold' : ''}>2025_PH2</span>
-          <span className={currentYear === 2026 ? 'text-white font-bold' : ''}>2026_LIVE</span>
+          <span className={currentEpoch === '2021' ? 'text-white font-bold' : ''}>2021_BASE</span>
+          <span className={currentEpoch === '2023' ? 'text-white font-bold' : ''}>2023_PH1</span>
+          <span className={currentEpoch === '2025' ? 'text-white font-bold' : ''}>2025_PH2</span>
+          <span className={currentEpoch === '2026' ? 'text-white font-bold' : ''}>2026_LIVE</span>
         </div>
       </div>
     </div>

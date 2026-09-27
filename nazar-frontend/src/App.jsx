@@ -5,7 +5,6 @@ import MapCanvas from './components/MapCanvas';
 import EvidenceCasePanel from './components/EvidenceCasePanel';
 import LedgerViewer from './components/LedgerViewer';
 import TimelineSlider from './components/TimelineSlider';
-import LayerControls from './components/LayerControls';
 import ExportModal from './components/ExportModal';
 import { Database, FileDown } from 'lucide-react';
 
@@ -13,18 +12,16 @@ function App() {
   const [selectedFeature, setSelectedFeature] = useState(null);
   const [isLedgerOpen, setIsLedgerOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
-  const [activeLayer, setActiveLayer] = useState('cartodb');
+  const [currentEpoch, setCurrentEpoch] = useState('2026');
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-black font-sans text-white">
       <Header />
       
-      <LayerControls activeLayer={activeLayer} setActiveLayer={setActiveLayer} />
-
       <MapCanvas 
         onFeatureSelect={setSelectedFeature} 
         selectedFeature={selectedFeature} 
-        activeLayer={activeLayer}
+        currentEpoch={currentEpoch}
       />
 
       <EvidenceCasePanel 
@@ -32,7 +29,10 @@ function App() {
         onClose={() => setSelectedFeature(null)} 
       />
 
-      <TimelineSlider />
+      <TimelineSlider 
+        currentEpoch={currentEpoch} 
+        setCurrentEpoch={setCurrentEpoch} 
+      />
       
       <LedgerViewer 
         isOpen={isLedgerOpen} 

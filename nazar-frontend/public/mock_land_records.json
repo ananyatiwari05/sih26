@@ -1,0 +1,843 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "b46069c1-c043-4c52-a77c-9e51f6e046c3",
+        "owner_name": "Verified Owner 1",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 425
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41235227355469,
+              23.256918588020383
+            ],
+            [
+              77.4125522735547,
+              23.256918588020383
+            ],
+            [
+              77.4125522735547,
+              23.257118588020383
+            ],
+            [
+              77.41235227355469,
+              23.257118588020383
+            ],
+            [
+              77.41235227355469,
+              23.256918588020383
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9f715420-9c05-490a-ad35-6c10162ccc3f",
+        "owner_name": "Verified Owner 2",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 237
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41118271604107,
+              23.262081157434075
+            ],
+            [
+              77.41138271604108,
+              23.262081157434075
+            ],
+            [
+              77.41138271604108,
+              23.262281157434074
+            ],
+            [
+              77.41118271604107,
+              23.262281157434074
+            ],
+            [
+              77.41118271604107,
+              23.262081157434075
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "46b6b237-94e8-4a41-82a6-49412c365a41",
+        "owner_name": "Verified Owner 3",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 359
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41364231549272,
+              23.262254990391916
+            ],
+            [
+              77.41384231549273,
+              23.262254990391916
+            ],
+            [
+              77.41384231549273,
+              23.262454990391916
+            ],
+            [
+              77.41364231549272,
+              23.262454990391916
+            ],
+            [
+              77.41364231549272,
+              23.262254990391916
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2df5a994-6a8a-48dd-9293-2e1f96b6abca",
+        "owner_name": "Verified Owner 4",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 448
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41560139823386,
+              23.255563569752354
+            ],
+            [
+              77.41580139823387,
+              23.255563569752354
+            ],
+            [
+              77.41580139823387,
+              23.255763569752354
+            ],
+            [
+              77.41560139823386,
+              23.255763569752354
+            ],
+            [
+              77.41560139823386,
+              23.255563569752354
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "dfb5f2a7-5714-42ba-b939-c1ead71f9bc1",
+        "owner_name": "Verified Owner 5",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 301
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4134049314625,
+              23.25600318853909
+            ],
+            [
+              77.4136049314625,
+              23.25600318853909
+            ],
+            [
+              77.4136049314625,
+              23.25620318853909
+            ],
+            [
+              77.4134049314625,
+              23.25620318853909
+            ],
+            [
+              77.4134049314625,
+              23.25600318853909
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "ef25878f-b17b-4964-849b-0e89c4ac8410",
+        "owner_name": "Verified Owner 6",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 212
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41554924768175,
+              23.264509781969256
+            ],
+            [
+              77.41574924768176,
+              23.264509781969256
+            ],
+            [
+              77.41574924768176,
+              23.264709781969255
+            ],
+            [
+              77.41554924768175,
+              23.264709781969255
+            ],
+            [
+              77.41554924768175,
+              23.264509781969256
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6208e6e8-bec4-472f-a187-0b363f2f0a7d",
+        "owner_name": "Verified Owner 7",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 396
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41669296612461,
+              23.263392650952404
+            ],
+            [
+              77.41689296612462,
+              23.263392650952404
+            ],
+            [
+              77.41689296612462,
+              23.263592650952404
+            ],
+            [
+              77.41669296612461,
+              23.263592650952404
+            ],
+            [
+              77.41669296612461,
+              23.263392650952404
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7c4c3ad4-7dc2-4aa8-a7b5-72a54b72903b",
+        "owner_name": "Verified Owner 8",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 412
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41502148044476,
+              23.256172728164955
+            ],
+            [
+              77.41522148044477,
+              23.256172728164955
+            ],
+            [
+              77.41522148044477,
+              23.256372728164955
+            ],
+            [
+              77.41502148044476,
+              23.256372728164955
+            ],
+            [
+              77.41502148044476,
+              23.256172728164955
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "aa2ff589-aadf-470f-a967-ce268a27ac10",
+        "owner_name": "Verified Owner 9",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 200
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4174087507386,
+              23.259448046461223
+            ],
+            [
+              77.41760875073861,
+              23.259448046461223
+            ],
+            [
+              77.41760875073861,
+              23.259648046461223
+            ],
+            [
+              77.4174087507386,
+              23.259648046461223
+            ],
+            [
+              77.4174087507386,
+              23.259448046461223
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a4912460-1b54-4de6-b24f-62ad94f6dde4",
+        "owner_name": "Verified Owner 10",
+        "status": "VERIFIED",
+        "type": "VERIFIED",
+        "area_sqm": 489
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41528304777346,
+              23.257912625191953
+            ],
+            [
+              77.41548304777346,
+              23.257912625191953
+            ],
+            [
+              77.41548304777346,
+              23.258112625191952
+            ],
+            [
+              77.41528304777346,
+              23.258112625191952
+            ],
+            [
+              77.41528304777346,
+              23.257912625191953
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "cbbc20f1-71ad-4de8-909b-aa80fbec48ac",
+        "owner_name": "Flagged Owner 1",
+        "status": "ANOMALY",
+        "type": "RED",
+        "rationale": "Ghost Structure - Physical building exists, missing in Cadastral",
+        "confidence": 91,
+        "area_sqm": 445
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41332639502922,
+              23.25548979710987
+            ],
+            [
+              77.41352639502922,
+              23.25548979710987
+            ],
+            [
+              77.41352639502922,
+              23.25568979710987
+            ],
+            [
+              77.41332639502922,
+              23.25568979710987
+            ],
+            [
+              77.41332639502922,
+              23.25548979710987
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "d331f2bb-d982-4e68-9644-61dfff3e0b97",
+        "owner_name": "Flagged Owner 2",
+        "status": "ANOMALY",
+        "type": "RED",
+        "rationale": "Ghost Structure - Found via nDSM > 2.5m, no revenue record",
+        "confidence": 96,
+        "area_sqm": 192
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.40852041781486,
+              23.264709637342456
+            ],
+            [
+              77.40872041781486,
+              23.264709637342456
+            ],
+            [
+              77.40872041781486,
+              23.264909637342456
+            ],
+            [
+              77.40852041781486,
+              23.264909637342456
+            ],
+            [
+              77.40852041781486,
+              23.264709637342456
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c5156705-29f3-41ce-b196-49717340e765",
+        "owner_name": "Flagged Owner 3",
+        "status": "ANOMALY",
+        "type": "ORANGE",
+        "rationale": "Phantom Record - Building in paper, missing on ground",
+        "confidence": 99,
+        "area_sqm": 401
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41085021391444,
+              23.25657143760696
+            ],
+            [
+              77.41105021391445,
+              23.25657143760696
+            ],
+            [
+              77.41105021391445,
+              23.25677143760696
+            ],
+            [
+              77.41085021391444,
+              23.25677143760696
+            ],
+            [
+              77.41085021391444,
+              23.25657143760696
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "81a7f084-fe12-4073-8b6f-71b988003244",
+        "owner_name": "Flagged Owner 4",
+        "status": "ANOMALY",
+        "type": "ORANGE",
+        "rationale": "Phantom Record - Cadastral polygon exists, barren land",
+        "confidence": 93,
+        "area_sqm": 410
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41534774982203,
+              23.25671669190731
+            ],
+            [
+              77.41554774982204,
+              23.25671669190731
+            ],
+            [
+              77.41554774982204,
+              23.25691669190731
+            ],
+            [
+              77.41534774982203,
+              23.25691669190731
+            ],
+            [
+              77.41534774982203,
+              23.25671669190731
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7bd427ce-0900-4c1a-aa2a-85fd678a2af9",
+        "owner_name": "Flagged Owner 5",
+        "status": "ANOMALY",
+        "type": "YELLOW",
+        "rationale": "Boundary Drift - Cadastral vs actual drift > 1.5m",
+        "confidence": 93,
+        "area_sqm": 466
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.40950004520842,
+              23.255693987293142
+            ],
+            [
+              77.40970004520842,
+              23.255693987293142
+            ],
+            [
+              77.40970004520842,
+              23.255893987293142
+            ],
+            [
+              77.40950004520842,
+              23.255893987293142
+            ],
+            [
+              77.40950004520842,
+              23.255693987293142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "86410de2-e51f-4d75-aaa6-c62def70b6b6",
+        "owner_name": "Flagged Owner 6",
+        "status": "ANOMALY",
+        "type": "YELLOW",
+        "rationale": "Boundary Drift - 2.1m shift detected",
+        "confidence": 92,
+        "area_sqm": 217
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41441911481427,
+              23.254913472255108
+            ],
+            [
+              77.41461911481427,
+              23.254913472255108
+            ],
+            [
+              77.41461911481427,
+              23.255113472255108
+            ],
+            [
+              77.41441911481427,
+              23.255113472255108
+            ],
+            [
+              77.41441911481427,
+              23.254913472255108
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9eb0c11f-fd6f-4159-bfef-f4976b9f39ff",
+        "owner_name": "Flagged Owner 7",
+        "status": "ANOMALY",
+        "type": "BLUE",
+        "rationale": "Attribute Mismatch - Owner/Area discrepancy",
+        "confidence": 92,
+        "area_sqm": 283
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41663826396682,
+              23.260682014686925
+            ],
+            [
+              77.41683826396682,
+              23.260682014686925
+            ],
+            [
+              77.41683826396682,
+              23.260882014686924
+            ],
+            [
+              77.41663826396682,
+              23.260882014686924
+            ],
+            [
+              77.41663826396682,
+              23.260682014686925
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "e210aaad-09cf-414f-932f-da268ff527b1",
+        "owner_name": "Flagged Owner 8",
+        "status": "ANOMALY",
+        "type": "BLUE",
+        "rationale": "Attribute Mismatch - Land use conflict (Commercial vs Res)",
+        "confidence": 96,
+        "area_sqm": 212
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4150253944925,
+              23.26464524390178
+            ],
+            [
+              77.41522539449251,
+              23.26464524390178
+            ],
+            [
+              77.41522539449251,
+              23.264845243901778
+            ],
+            [
+              77.4150253944925,
+              23.264845243901778
+            ],
+            [
+              77.4150253944925,
+              23.26464524390178
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "a33ece6f-0ffa-4a9e-8932-4d82541ce21c",
+        "owner_name": "Flagged Owner 9",
+        "status": "ANOMALY",
+        "type": "PURPLE",
+        "rationale": "Duplicate Identity - Single physical parcel with 2 IDs",
+        "confidence": 92,
+        "area_sqm": 334
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41539105538159,
+              23.261033698820874
+            ],
+            [
+              77.4155910553816,
+              23.261033698820874
+            ],
+            [
+              77.4155910553816,
+              23.261233698820874
+            ],
+            [
+              77.41539105538159,
+              23.261233698820874
+            ],
+            [
+              77.41539105538159,
+              23.261033698820874
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "54bcf601-9b47-44fe-9488-75813215352d",
+        "owner_name": "Flagged Owner 10",
+        "status": "ANOMALY",
+        "type": "PURPLE",
+        "rationale": "Duplicate Identity - Overlapping registrations",
+        "confidence": 91,
+        "area_sqm": 468
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41451389382924,
+              23.261456381274698
+            ],
+            [
+              77.41471389382924,
+              23.261456381274698
+            ],
+            [
+              77.41471389382924,
+              23.261656381274697
+            ],
+            [
+              77.41451389382924,
+              23.261656381274697
+            ],
+            [
+              77.41451389382924,
+              23.261456381274698
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "91562184-c5f7-4cc1-8a17-33e5d7b97d79",
+        "owner_name": "Flagged Owner 11",
+        "status": "ANOMALY",
+        "type": "BLACK",
+        "rationale": "Temporal Ghost - Structure vanished between 2024 and 2025",
+        "confidence": 98,
+        "area_sqm": 296
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41105312602782,
+              23.260640889948977
+            ],
+            [
+              77.41125312602783,
+              23.260640889948977
+            ],
+            [
+              77.41125312602783,
+              23.260840889948977
+            ],
+            [
+              77.41105312602782,
+              23.260840889948977
+            ],
+            [
+              77.41105312602782,
+              23.260640889948977
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "e393b108-3acb-4b64-bf5b-8ca28d7f2379",
+        "owner_name": "Flagged Owner 12",
+        "status": "ANOMALY",
+        "type": "BLACK",
+        "rationale": "Temporal Ghost - Appeared, vanished, reappeared",
+        "confidence": 86,
+        "area_sqm": 227
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.41577043297676,
+              23.256977206267376
+            ],
+            [
+              77.41597043297676,
+              23.256977206267376
+            ],
+            [
+              77.41597043297676,
+              23.257177206267375
+            ],
+            [
+              77.41577043297676,
+              23.257177206267375
+            ],
+            [
+              77.41577043297676,
+              23.256977206267376
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

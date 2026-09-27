@@ -1,28 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { initialLedgerData } from '../data/mockData';
 import { Terminal, ShieldAlert } from 'lucide-react';
 
 const LedgerViewer = ({ isOpen, onClose }) => {
-  const [ledger, setLedger] = useState(initialLedgerData);
+  const [ledger, setLedger] = useState([]);
   const [tamperedIdx, setTamperedIdx] = useState(null);
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+
+  const fetchLedger = () => {
+    fetch(`${API_URL}/ledger`)
+      .then(res => res.json())
+      .then(data => setLedger(data))
+      .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchLedger();
+    }
+  }, [isOpen]);
 
   const simulateTampering = (idx) => {
-    const newLedger = [...ledger];
-    newLedger[idx].tampered = true;
-    newLedger[idx].hash = "ERR_HASH_MISMATCH";
-    
-    for (let i = idx - 1; i >= 0; i--) {
-      newLedger[i].tampered = true;
-    }
-    
-    setLedger(newLedger);
-    setTamperedIdx(idx);
+    const blockNo = ledger[idx].block;
+    fetch(`${API_URL}/ledger/simulate-tamper/${blockNo}`, { method: 'POST' })
+      .then(res => res.json())
+      .then(() => {
+        setTamperedIdx(idx);
+        fetchLedger();
+      })
+      .catch(err => console.error(err));
   };
 
   const resetLedger = () => {
-    setLedger(initialLedgerData);
-    setTamperedIdx(null);
+    fetch(`${API_URL}/ledger/reset`, { method: 'POST' })
+      .then(res => res.json())
+      .then(() => {
+        setTamperedIdx(null);
+        fetchLedger();
+      })
+      .catch(err => console.error(err));
   };
 
   return (

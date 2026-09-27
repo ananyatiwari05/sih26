@@ -3,9 +3,28 @@ import { Mic, Search, Square } from 'lucide-react';
 
 const VoiceSearchBar = () => {
   const [isListening, setIsListening] = useState(false);
+  const [query, setQuery] = useState('');
+  const [responseMsg, setResponseMsg] = useState(null);
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
   const toggleListen = () => {
     setIsListening(!isListening);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && query.trim() !== '') {
+      fetch(`${API_URL}/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      })
+      .then(res => res.json())
+      .then(data => {
+        setResponseMsg(data.text);
+        setTimeout(() => setResponseMsg(null), 3000);
+      })
+      .catch(err => console.error(err));
+    }
   };
 
   return (
@@ -16,6 +35,9 @@ const VoiceSearchBar = () => {
           type="text" 
           placeholder=">_ QUERY: 'Show ghost structures...'" 
           className="bg-transparent border-none outline-none text-white text-xs w-full placeholder:text-zinc-600 uppercase"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button 
           onClick={toggleListen}
@@ -29,6 +51,13 @@ const VoiceSearchBar = () => {
           <div className="flex items-center gap-2 uppercase tracking-widest">
             <span className="w-2 h-2 bg-white animate-pulse"></span>
             REC // BHASHINI AI ACTIVE...
+          </div>
+        </div>
+      )}
+      {responseMsg && (
+        <div className="absolute top-10 left-0 w-full bg-black border border-white p-2 text-[10px] text-white shadow-[4px_4px_0px_white] z-50">
+          <div className="flex items-center gap-2 uppercase tracking-widest">
+            &gt;_ {responseMsg}
           </div>
         </div>
       )}

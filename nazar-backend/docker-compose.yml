@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nazar
+      POSTGRES_USER: nazar
+      POSTGRES_PASSWORD: nazar
+    ports:
+      - "5432:5432"
+    volumes:
+      - nazar_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DATA_BACKEND: postgis
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: nazar
+      DB_USER: nazar
+      DB_PASSWORD: nazar
+    ports:
+      - "8000:8000"
+
+volumes:
+  nazar_pgdata:

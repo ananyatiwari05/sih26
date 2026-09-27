@@ -1,21 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { X, AlertOctagon, CheckSquare, ShieldAlert, Navigation, Edit2 } from 'lucide-react';
-import { elevationChartData } from '../data/mockData';
 
 const EvidenceCasePanel = ({ selectedFeature, onClose }) => {
-  if (!selectedFeature) return null;
+  const [caseDetails, setCaseDetails] = useState(null);
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
-  const { properties } = selectedFeature;
-  const isGhost = properties.type === 'GHOST_STRUCTURE';
-  const isPhantom = properties.type === 'PHANTOM_RECORD';
-  const isDrift = properties.type === 'BOUNDARY_DRIFT';
+  useEffect(() => {
+    if (selectedFeature) {
+      setCaseDetails(null);
+      fetch(`${API_URL}/anomalies/${selectedFeature.properties.id}`)
+        .then(res => res.json())
+        .then(data => setCaseDetails(data))
+        .catch(err => console.error(err));
+    }
+  }, [selectedFeature]);
+
+  const handleAction = (actionType) => {
+    if (!caseDetails) return;
+    fetch(`${API_URL}/anomalies/${caseDetails.id}/action`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: actionType, officerId: 'OFF-1234' })
+    })
+    .then(res => res.json())
+    .then(data => {
+      setCaseDetails({ ...caseDetails, status: data.newStatus });
+    })
+    .catch(err => console.error(err));
+  };
+
+  if (!selectedFeature || !caseDetails) return null;
+
+  const properties = caseDetails;
+  const isGhost = properties.type === 'RED' || properties.type === 'GHOST_STRUCTURE';
+  const isPhantom = properties.type === 'ORANGE' || properties.type === 'PHANTOM_RECORD';
+  const isDrift = properties.type === 'YELLOW' || properties.type === 'BOUNDARY_DRIFT';
+  const isAttr = properties.type === 'BLUE';
+  const isDup = properties.type === 'PURPLE';
+  const isTemporal = properties.type === 'BLACK';
   const isVerified = properties.type === 'VERIFIED';
 
   const verdictText = isGhost ? 'GHOST STRUCTURE DETECTED' : 
                       isPhantom ? 'PHANTOM RECORD DETECTED' : 
                       isDrift ? 'BOUNDARY DRIFT DETECTED' : 
+                      isAttr ? 'ATTRIBUTE MISMATCH' :
+                      isDup ? 'DUPLICATE IDENTITY' :
+                      isTemporal ? 'TEMPORAL GHOST' :
                       'VERIFIED CLEAN PARCEL';
 
   return (
@@ -57,7 +89,7 @@ const EvidenceCasePanel = ({ selectedFeature, onClose }) => {
               CONFIDENCE: {properties.confidence}%
             </div>
             <p className="text-sm text-zinc-300 leading-relaxed font-mono">
-              &gt; {properties.description}
+              &gt; {properties.rationale || properties.description}
             </p>
           </div>
 
@@ -95,7 +127,7 @@ const EvidenceCasePanel = ({ selectedFeature, onClose }) => {
               </h4>
               <div className="h-40 bg-black border border-zinc-700 p-2">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={elevationChartData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
+                  <AreaChart data={properties.elevationProfile || []} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
                     <defs>
                       <linearGradient id="colorStructure" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#ffffff" stopOpacity={0.8}/>
@@ -122,24 +154,23 @@ const EvidenceCasePanel = ({ selectedFeature, onClose }) => {
 
         </div>
 
-        {/* Action Controls */}
         <div className="p-4 border-t border-zinc-700 bg-black sticky bottom-0 flex flex-col gap-3">
           {isVerified ? (
-             <button className="w-full py-3 px-4 bg-white text-black font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 transition-colors border border-transparent hover:bg-black hover:text-white hover:border-white">
+             <button onClick={() => handleAction('VERIFY_PARCEL')} className="w-full py-3 px-4 bg-white text-black font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2 transition-colors border border-transparent hover:bg-black hover:text-white hover:border-white">
                <CheckSquare className="w-4 h-4" />
                SYNC TO SVAMITVA
              </button>
           ) : (
             <>
               <div className="flex gap-3">
-                <button className="flex-1 py-2.5 px-3 bg-black text-white border border-zinc-600 hover:border-white font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
+                <button onClick={() => handleAction('REJECT')} className="flex-1 py-2.5 px-3 bg-black text-white border border-zinc-600 hover:border-white font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
                   <X className="w-3.5 h-3.5" /> REJECT
                 </button>
-                <button className="flex-1 py-2.5 px-3 bg-white text-black border border-white hover:bg-black hover:text-white font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
+                <button onClick={() => handleAction('ACCEPT')} className="flex-1 py-2.5 px-3 bg-white text-black border border-white hover:bg-black hover:text-white font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
                   <CheckSquare className="w-3.5 h-3.5" /> ACCEPT
                 </button>
               </div>
-              <button className="w-full py-2.5 px-4 bg-zinc-900 text-zinc-300 border border-zinc-800 hover:border-zinc-500 font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
+              <button onClick={() => handleAction('EDIT_BOUNDARY')} className="w-full py-2.5 px-4 bg-zinc-900 text-zinc-300 border border-zinc-800 hover:border-zinc-500 font-mono uppercase tracking-widest flex items-center justify-center gap-2 transition-colors text-[10px]">
                 <Edit2 className="w-3 h-3" /> EDIT POLYGON
               </button>
             </>

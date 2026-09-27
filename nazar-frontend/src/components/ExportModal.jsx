@@ -5,9 +5,22 @@ import { Download, X, FileJson, MapPin, Printer } from 'lucide-react';
 const ExportModal = ({ isOpen, onClose, selectedFeature }) => {
   if (!isOpen) return null;
 
+  const [isExporting, setIsExporting] = React.useState(false);
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+
   const handleDownload = (format) => {
-    alert(`Exporting Sampatti Patrak as ${format.toUpperCase()}...`);
-    onClose();
+    setIsExporting(true);
+    fetch(`${API_URL}/parcels/${parcelId}/property-card`)
+      .then(res => res.json())
+      .then(data => {
+        setIsExporting(false);
+        alert(`Exporting Sampatti Patrak for ${data.owner} as ${format.toUpperCase()}...`);
+        onClose();
+      })
+      .catch(err => {
+        setIsExporting(false);
+        console.error(err);
+      });
   };
 
   const isVerified = selectedFeature?.properties?.type === 'VERIFIED';
@@ -75,9 +88,10 @@ const ExportModal = ({ isOpen, onClose, selectedFeature }) => {
           <div className="p-4 flex gap-3 border-t border-zinc-700 bg-zinc-950">
             <button 
               onClick={() => handleDownload('pdf')}
-              className="flex-1 bg-white hover:bg-zinc-300 text-black py-3 px-4 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-widest transition-colors rounded-none border border-transparent"
+              className={`flex-1 bg-white hover:bg-zinc-300 text-black py-3 px-4 flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-widest transition-colors rounded-none border border-transparent ${isExporting ? 'opacity-50' : ''}`}
+              disabled={isExporting}
             >
-              <Download className="w-4 h-4" /> EXPORT PDF
+              <Download className="w-4 h-4" /> {isExporting ? 'EXPORTING...' : 'EXPORT PDF'}
             </button>
             <button 
               onClick={() => handleDownload('geojson')}
