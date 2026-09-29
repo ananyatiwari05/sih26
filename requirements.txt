@@ -1,0 +1,13 @@
+torch
+torchvision
+transformers
+huggingface-hub
+safetensors
+numpy
+pandas
+tqdm
+Pillow
+rasterio
+geopandas
+shapely
+pyogrio
