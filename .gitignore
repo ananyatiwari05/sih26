@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Data
+data/raw/
+data/prepared/
+data/spacenet_sample/raw/
+
+# Model outputs/checkpoints
+models/
+outputs/
+
+# Hugging Face cache
+.cache/
+.huggingface/
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
